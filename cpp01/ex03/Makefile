@@ -1,5 +1,5 @@
-NAME = account
-SRC = Account.cpp tests.cpp
+NAME = violence
+SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 all: $(NAME)
 

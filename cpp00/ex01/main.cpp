@@ -1,8 +1,5 @@
 #include "PhoneBook.hpp"
 #include <iostream>
-#include <string>
-#include <algorithm>
-#include <cctype>
 
 int main()
 {
@@ -22,26 +19,17 @@ int main()
             std::cout << "\nEOF detected. Exiting program." << std::endl;
             break;
         }
-        std::transform(command.begin(), command.end(), command.begin(), ::toupper);
-
         if (command == "ADD")
-        {
             phoneBook.addContact();
-        }
         else if (command == "SEARCH")
-        {
             phoneBook.searchContact();
-        }
         else if (command == "EXIT")
         {
             std::cout << "Exiting PhoneBook application. Goodbye!" << std::endl;
             break;
         }
         else
-        {
             std::cout << "Invalid command. Please enter ADD, SEARCH, or EXIT." << std::endl;
-        }
     }
-
-    return 0;
+    return (0);
 }
