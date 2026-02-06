@@ -12,7 +12,7 @@ private:
     std::string darkest_secret;
 public:
     Contact();
-    void    setContact(void);
+    bool    setContact(void);
 
     std::string getFirstName(void);
     std::string getLastName(void);

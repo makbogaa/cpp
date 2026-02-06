@@ -6,13 +6,17 @@ int main()
     PhoneBook phoneBook;
     std::string command;
 
-    std::cout << "Welcome to the PhoneBook application!" << std::endl;
     std::cout << "Available commands: ADD, SEARCH, EXIT" << std::endl;
 
     while (true)
     {
         std::cout << "Enter command: ";
-        std::getline(std::cin, command);
+        if(!std::getline(std::cin, command))
+        {
+            std::cin.clear();
+            std::cout << "\nEOF detected. Exiting program." << std::endl;
+            break;
+        }
         if (std::cin.eof())
         {
             std::cin.clear();
@@ -20,12 +24,18 @@ int main()
             break;
         }
         if (command == "ADD")
-            phoneBook.addContact();
+        {
+            if (!phoneBook.addContact())
+                break;
+        }
         else if (command == "SEARCH")
-            phoneBook.searchContact();
+        {
+            if (!phoneBook.searchContact())
+                break;
+        }
         else if (command == "EXIT")
         {
-            std::cout << "Exiting PhoneBook application. Goodbye!" << std::endl;
+            std::cout << "Exiting PhoneBook." << std::endl;
             break;
         }
         else

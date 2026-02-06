@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cctype>
 
 int main(int argc, char const *argv[])
 {
@@ -11,7 +11,6 @@ int main(int argc, char const *argv[])
         {
             for (int j = 0; argv[i][j]; j++)
                 std::cout << (char)std::toupper(argv[i][j]);
-            std::cout << ' ';
         }
         std::cout << std::endl;
     }

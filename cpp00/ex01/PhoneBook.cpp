@@ -13,22 +13,23 @@ std::string PhoneBook::formatField(std::string str)
     return str;
 }
 
-void PhoneBook::addContact(void)
+bool PhoneBook::addContact(void)
 {
-    contacts[index].setContact();
+    if (!contacts[index].setContact())
+        return false;
     index = (index + 1) % 8;
     if (total < 8)
         total++;
+    return true;
 }
 
-void PhoneBook::searchContact(void)
+bool PhoneBook::searchContact(void)
 {
     if (total == 0)
     {
         std::cout << "PhoneBook is empty. Please add a contact first." << std::endl;
-        return;
+        return 1;
     }
-
     std::cout << std::setw(10) << std::right << "Index" << "|"
               << std::setw(10) << std::right << "First Name" << "|"
               << std::setw(10) << std::right << "Last Name" << "|"
@@ -47,12 +48,17 @@ void PhoneBook::searchContact(void)
     while (true)
     {
         std::cout << "Enter the index of the contact to view details (1-" << total << "): ";
-        std::getline(std::cin, input);
+        if(!std::getline(std::cin, input))
+        {
+            std::cin.clear();
+            std::cout << "\nEOF detected. Exiting program." << std::endl;
+            return 0;
+        }
         if (std::cin.eof())
         {
             std::cin.clear();
             std::cout << "\nEOF detected. Exiting search." << std::endl;
-            return;
+            return 0;
         }
         if (input.length() == 1 && std::isdigit(input[0]))
         {
@@ -60,10 +66,10 @@ void PhoneBook::searchContact(void)
             if (index >= 1 && index <= total)
             {
                 displayContact(index - 1);
-                break;
+                return 1;
             }
         }
-        std::cout << "Invalid index. Please try again." << std::endl;
+        std::cout << "Invalid index." << std::endl;
     }
 }
 

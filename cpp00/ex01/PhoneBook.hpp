@@ -13,8 +13,8 @@ private:
     static std::string formatField(std::string str);
 public:
     PhoneBook();
-    void    addContact(void);
-    void    searchContact(void);
+    bool    addContact(void);
+    bool    searchContact(void);
     void    displayContact(int i);
 };
 
