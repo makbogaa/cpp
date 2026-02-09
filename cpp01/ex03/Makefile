@@ -1,17 +1,20 @@
 NAME = violence
-SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+
+SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(SRC)
-	c++ -Wall -Wextra -Werror -std=c++98 $(SRC) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	@rm -f $(NAME)
+	rm -f $(OBJS)
 
-fclean:
-	@rm -f $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re

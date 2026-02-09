@@ -43,14 +43,19 @@ int main(int argc, char **argv)
     
     std::string content;
     std::string line;
-    bool first = true;
     
     while (std::getline(infile, line))
     {
-        if (!first)
-            content += "\n";
         content += line;
-        first = false;
+        if (!infile.eof())
+            content += "\n";
+    }
+    
+    if (infile.bad())
+    {
+        std::cerr << "Error: Failed to read file '" << filename << "'" << std::endl;
+        infile.close();
+        return 1;
     }
     
     infile.close();

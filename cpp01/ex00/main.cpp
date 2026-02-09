@@ -1,6 +1,7 @@
 #include "Zombie.hpp"
 
-int main() {
+int main()
+{
     Zombie *z1 = newZombie("HeapZombie");
     z1->announce();
     delete z1;
